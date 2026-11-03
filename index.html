@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101319">
+  <title>F1 Championship Predictor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="F1 Championship Predictor">
+        <span class="brand-mark">F1</span>
+        <span><strong>CHAMPIONSHIP</strong><small>PREDICTOR</small></span>
+      </a>
+      <div class="season-label">SAISON <strong>2026</strong></div>
+      <nav aria-label="Navigation principale">
+        <button class="nav-link active" data-page="dashboard"><span>▦</span> <span data-i18n="dashboard">Tableau de bord</span></button>
+        <button class="nav-link" data-page="drivers"><span>♙</span> <span data-i18n="drivers">Pilotes</span></button>
+        <button class="nav-link" data-page="simulator"><span>◉</span> <span data-i18n="simulator">Simulateur</span></button>
+        <button class="nav-link" data-page="standings"><span>▤</span> <span data-i18n="standings">Classement</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="live-dot"></span> <span data-i18n="prototype">Prototype interactif</span>
+        <small>F1 CHAMPIONSHIP PREDICTOR</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">F1</span><strong>CHAMPIONSHIP PREDICTOR</strong></div>
+        <div class="topbar-right">
+          <span class="season-pill">2026 SEASON</span>
+          <select id="language" aria-label="Language">
+            <option value="fr">FR</option><option value="en">EN</option>
+            <option value="de">DE</option><option value="es">ES</option>
+          </select>
+        </div>
+      </header>
+
+      <section class="notice"><strong>MODE DÉMO</strong><span data-i18n="demoNotice">Les points et probabilités affichés sont fictifs : aucune donnée officielle n'est connectée.</span></section>
+
+      <section id="dashboard" class="page active">
+        <div class="eyebrow">2026 · WORLD CHAMPIONSHIP</div>
+        <div class="page-heading">
+          <div><h1 data-i18n="seasonTitle">La course au titre.</h1><p data-i18n="seasonSubtitle">Explore les scénarios et suis la bataille du championnat.</p></div>
+          <div class="round-chip"><span data-i18n="round">MANCHE</span><strong>— / 24</strong></div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-copy"><span class="red-kicker" data-i18n="predictor">CHAMPIONSHIP PREDICTOR</span><h2 data-i18n="heroTitle">Chaque point<br>peut tout changer.</h2><p data-i18n="heroText">Sélectionne un pilote pour explorer ses chances et tester différents résultats.</p><button class="primary-btn" data-go="drivers" data-i18n="exploreDrivers">Explorer les pilotes <b>↗</b></button></div>
+          <div class="hero-art"><div class="speed-lines"></div><div class="hero-number">01</div><div class="hero-caption">RACE<br>TO THE<br>TITLE</div></div>
+        </div>
+        <div class="section-head"><div><div class="eyebrow" data-i18n="titleContenders">TITLE CONTENDERS</div><h2 data-i18n="championshipBattle">La bataille du championnat</h2></div><button class="text-btn" data-go="standings" data-i18n="fullStandings">Classement complet ↗</button></div>
+        <div id="contender-grid" class="driver-grid"></div>
+      </section>
+
+      <section id="drivers" class="page">
+        <div class="eyebrow">DRIVER CENTER</div><h1 data-i18n="allDrivers">Tous les pilotes</h1>
+        <p class="page-intro" data-i18n="driversIntro">Choisis un pilote pour consulter sa fiche et ses statistiques de démonstration.</p>
+        <div id="driver-list" class="driver-list"></div>
+      </section>
+
+      <section id="simulator" class="page">
+        <div class="eyebrow">RACE SIMULATOR</div><h1 data-i18n="simulateTitle">Et si la prochaine course…</h1>
+        <p class="page-intro" data-i18n="simulateIntro">Teste une position d'arrivée et observe son effet sur le total de points du pilote.</p>
+        <div class="sim-layout">
+          <div class="panel">
+            <label for="sim-driver" data-i18n="chooseDriver">CHOISIR UN PILOTE</label><select id="sim-driver"></select>
+            <label for="sim-position" data-i18n="finishPosition">POSITION À L'ARRIVÉE</label>
+            <select id="sim-position">
+              <option value="25">1er — 25 points</option><option value="18">2e — 18 points</option>
+              <option value="15">3e — 15 points</option><option value="12">4e — 12 points</option>
+              <option value="10">5e — 10 points</option><option value="8">6e — 8 points</option>
+              <option value="6">7e — 6 points</option><option value="4">8e — 4 points</option>
+              <option value="2">9e — 2 points</option><option value="1">10e — 1 point</option>
+              <option value="0">11e ou plus — 0 point</option>
+            </select>
+            <button id="simulate-btn" class="primary-btn full" data-i18n="runSimulation">Lancer la simulation ↗</button>
+            <p class="fine-print" data-i18n="sprintNote">Barème de course principal simplifié : les sprints et points bonus ne sont pas inclus.</p>
+          </div>
+          <div id="sim-result" class="panel result-panel"><div class="result-placeholder"><span>◉</span><h3 data-i18n="awaiting">En attente d'une simulation</h3><p data-i18n="awaitingText">Choisis un pilote et un résultat pour commencer.</p></div></div>
+        </div>
+      </section>
+
+      <section id="standings" class="page">
+        <div class="eyebrow">WORLD CHAMPIONSHIP</div><h1 data-i18n="standingsTitle">Classement pilotes</h1>
+        <p class="page-intro" data-i18n="standingsIntro">Un classement de démonstration pour tester l'interface.</p>
+        <div class="panel table-wrap"><table><thead><tr><th>#</th><th data-i18n="driver">PILOTE</th><th data-i18n="team">ÉCURIE</th><th data-i18n="points">POINTS</th><th data-i18n="wins">VICTOIRES</th><th data-i18n="titleChance">CHANCE DE TITRE*</th></tr></thead><tbody id="standings-body"></tbody></table><p class="fine-print" data-i18n="probNote">* Pourcentages fictifs, uniquement destinés à illustrer la maquette.</p></div>
+      </section>
+
+      <footer><span>F1 CHAMPIONSHIP PREDICTOR</span><span data-i18n="footer">Projet indépendant — non affilié à la Formule 1 ou à la FIA.</span></footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
